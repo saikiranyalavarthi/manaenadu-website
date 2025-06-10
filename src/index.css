@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+body {
+  font-family: "Noto Sans Telugu", "Segoe UI", sans-serif;
+  background-color: #f5f7fa;
+}
+
+@font-face {
+  font-family: "Noto Sans Telugu";
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/notosanstelugu/v19/0nkoC9D2PquBg0q_5k5L2kmQl4E8.woff2)
+    format("woff2");
+  unicode-range: U+0951-0952, U+0964-0965, U+0C00-0C7F, U+1CDA, U+200C-200D,
+    U+25CC;
+}
+
+/* @layer components {
+  .news-grid {
+    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8;
+  }
+  
+  .post-content p {
+    @apply mb-4 text-lg leading-relaxed;
+  }
+  
+  .post-content h2 {
+    @apply text-2xl font-bold mt-8 mb-4 text-red-700;
+  }
+} */
