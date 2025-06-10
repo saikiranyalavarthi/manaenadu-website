@@ -11,7 +11,7 @@ const Home = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://manaenadu.com/wp-json/wp/v2/posts?per_page=9"
+          "https://manaenadu.com/wp-json/wp/v2/posts?_embed&orderby=date&order=desc&per_page=20"
         );
 
         if (!response.ok) {
