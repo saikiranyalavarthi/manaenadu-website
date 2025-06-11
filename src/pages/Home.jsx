@@ -13,7 +13,7 @@ const Home = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://manaenadu.com/wp-json/wp/v2/posts?_embed&orderby=date&order=desc&per_page=20"
+          "https://manaenadu.com/wp-json/wp/v2/posts?_embed&orderby=date&order=desc&per_page=30"
         );
 
         if (!response.ok) {
@@ -62,9 +62,10 @@ const Home = () => {
           </p>
         </div>
       </div>
-      <ThreeSectionNewsSliders />
+
       <NewsTicker />
       {/* News Grid Layout */}
+      <ThreeSectionNewsSliders />
       <div className="flex flex-wrap -mx-2">
         {posts.map((post) => (
           <div
