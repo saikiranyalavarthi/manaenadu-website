@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NewsCard from "../components/NewsCard";
 import NewsTicker from "../components/NewsTicker";
+import ThreeSectionNewsSliders from "../components/ThreeSectionNewsSliders";
 
 const Home = () => {
   const [posts, setPosts] = useState([]);
@@ -61,6 +62,7 @@ const Home = () => {
           </p>
         </div>
       </div>
+      <ThreeSectionNewsSliders />
       <NewsTicker />
       {/* News Grid Layout */}
       <div className="flex flex-wrap -mx-2">
