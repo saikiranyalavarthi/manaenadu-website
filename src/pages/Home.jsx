@@ -51,7 +51,7 @@ const Home = () => {
   }
 
   return (
-    <div>
+    <div className="p-4">
       <div className="mb-8">
         <div className="bg-gray-800 text-white py-6 px-6 rounded-lg">
           <h1 className="text-3xl md:text-4xl font-bold mb-4">తాజా వార్తలు</h1>
@@ -61,9 +61,15 @@ const Home = () => {
         </div>
       </div>
 
-      <div className="news-grid">
+      {/* News Grid Layout */}
+      <div className="flex flex-wrap -mx-2">
         {posts.map((post) => (
-          <NewsCard key={post.id} post={post} />
+          <div
+            key={post.id}
+            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4"
+          >
+            <NewsCard post={post} />
+          </div>
         ))}
       </div>
 

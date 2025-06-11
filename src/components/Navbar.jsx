@@ -18,7 +18,7 @@ const Navbar = () => {
   ];
 
   return (
-    <header className="bg-white shadow-md">
+    <header className="bg-white shadow-md sticky top-0 z-50">
       {/* Logo */}
       <div className="flex justify-center py-4">
         <div className="mt-1 w-64 h-16 flex items-center justify-center">
@@ -31,24 +31,24 @@ const Navbar = () => {
       </div>
 
       {/* Navbar */}
-      <nav className="border-t border-gray-200">
+      <nav className="border-t border-gray-200 border-opacity-20  bg-blue-950">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center py-3">
             {/* Mobile menu button */}
             <button
-              className="md:hidden text-gray-700 focus:outline-none"
+              className="md:hidden text-white focus:outline-none"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
             </button>
 
             {/* Desktop Navigation */}
-            <ul className="hidden md:flex space-x-6">
+            <ul className="hidden md:flex space-x-6  text-white px-4 py-2 rounded-lg">
               {categories.map((category) => (
                 <li key={category.id}>
                   <Link
                     to={`/category/${category.id}`}
-                    className="text-gray-700 hover:text-red-600 font-medium transition-colors duration-300"
+                    className="inline-block  text-white  px-3 py-1 rounded-full text-sm font-medium hover:bg-red-600 hover:text-white transition-all duration-300 underline-offset-4 hover:underline"
                   >
                     {category.name}
                   </Link>
@@ -58,13 +58,16 @@ const Navbar = () => {
 
             {/* Quick Links */}
             <div className="hidden md:flex items-center space-x-4">
-              <span className="text-gray-600 font-medium">త్వరిత లింకులు:</span>
-              <Link to="/" className="text-red-600 hover:underline">
+              <span className="text-white font-medium">త్వరిత లింకులు:</span>
+              <Link
+                to="/"
+                className="text-red-400 hover:text-white hover:underline transition duration-200"
+              >
                 హోమ్
               </Link>
               <Link
-                to="/category/latest"
-                className="text-red-600 hover:underline"
+                to="/"
+                className="text-red-400 hover:text-white hover:underline transition duration-200"
               >
                 తాజా వార్తలు
               </Link>
@@ -79,7 +82,7 @@ const Navbar = () => {
                   <li key={category.id}>
                     <Link
                       to={`/category/${category.id}`}
-                      className="block py-2 px-4 text-gray-700 hover:bg-gray-100 rounded"
+                      className="block py-2 px-4 text-white  hover:bg-red-600 rounded transition"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {category.name}
@@ -89,7 +92,7 @@ const Navbar = () => {
                 <li className="border-t border-gray-200 pt-3">
                   <Link
                     to="/"
-                    className="block py-2 px-4 text-red-600 font-medium"
+                    className="block py-2 px-4 text-red-400 hover:text-white font-medium transition"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     హోమ్
@@ -97,8 +100,8 @@ const Navbar = () => {
                 </li>
                 <li>
                   <Link
-                    to="/category/latest"
-                    className="block py-2 px-4 text-red-600 font-medium"
+                    to="/"
+                    className="block py-2 px-4 text-red-400 hover:text-white font-medium transition"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     తాజా వార్తలు

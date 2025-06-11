@@ -1,6 +1,17 @@
 import React from "react";
 import SocialIcons from "./SocialIcons";
 
+const categories = [
+  { name: "తెలంగాణ", href: "/category/telangana" },
+  { name: "ఆంధ్రప్రదేశ్", href: "/category/andhra-pradesh" },
+  { name: "పాలిటిక్స్", href: "/category/politics" },
+  { name: "సినిమాలు", href: "/category/movies" },
+  { name: "క్రీడలు", href: "/category/sports" },
+  { name: "బిజినెస్", href: "/category/business" },
+  { name: "జాతీయం", href: "/category/national" },
+  { name: "అంతర్జాతీయం", href: "/category/international" },
+];
+
 const Footer = () => {
   return (
     <footer className="bg-gray-800 text-white py-10">
@@ -19,46 +30,16 @@ const Footer = () => {
               వర్గాలు
             </h3>
             <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  తెలంగాణ
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  ఆంధ్రప్రదేశ్
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  పాలిటిక్స్
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  సినిమాలు
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  క్రీడలు
-                </a>
-              </li>
+              {categories.map((cat) => (
+                <li key={cat.name}>
+                  <a
+                    href={cat.href}
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    {cat.name}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -104,7 +85,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-          <p>© 2023 మన ఆంధ్ర ప్రదేశ్. అన్ని హక్కులు ప్రత్యేకించబడినవి.</p>
+          <p>© 2025 మన. అన్ని హక్కులు ప్రత్యేకించబడినవి.</p>
         </div>
       </div>
     </footer>

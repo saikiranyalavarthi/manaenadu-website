@@ -14,9 +14,9 @@ const PostPage = () => {
       try {
         setLoading(true);
         const [postResponse, relatedResponse] = await Promise.all([
-          fetch(`https://manaenadu.com/wp-json/wp/v2/posts/${id}`),
+          fetch(`https://manaenadu.com/wp-json/wp/v2/posts/${id}?_embed`),
           fetch(
-            `https://manaenadu.com/wp-json/wp/v2/posts?per_page=3&exclude=${id}`
+            `https://manaenadu.com/wp-json/wp/v2/posts?per_page=3&exclude=${id}&_embed`
           ),
         ]);
 
@@ -96,12 +96,12 @@ const PostPage = () => {
           </div>
         </div>
 
-        {post.jetpack_featured_media_url && (
+        {post._embedded?.["wp:featuredmedia"]?.[0]?.source_url && (
           <div className="mb-8">
             <img
-              src={post.jetpack_featured_media_url}
+              src={post._embedded["wp:featuredmedia"][0].source_url}
               alt={post.title.rendered}
-              className="w-full h-auto rounded-lg"
+              className="w-250 h-140 object-cover rounded-t-lg"
             />
           </div>
         )}
@@ -124,11 +124,14 @@ const PostPage = () => {
             >
               <Link to={`/post/${relatedPost.id}`}>
                 <div className="h-48 overflow-hidden">
-                  {relatedPost.jetpack_featured_media_url ? (
+                  {relatedPost._embedded?.["wp:featuredmedia"]?.[0]
+                    ?.source_url ? (
                     <img
-                      src={relatedPost.jetpack_featured_media_url}
+                      src={
+                        relatedPost._embedded["wp:featuredmedia"][0].source_url
+                      }
                       alt={relatedPost.title.rendered}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                      className="w-full h-48 object-cover"
                     />
                   ) : (
                     <div className="bg-gray-200 border-2 border-dashed rounded-xl w-full h-full flex items-center justify-center text-gray-500">

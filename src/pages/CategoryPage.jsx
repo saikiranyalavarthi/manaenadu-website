@@ -9,12 +9,18 @@ const CategoryPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Map category IDs to Telugu names
+  // Aliases for alternative slugs
+  const slugAliases = {
+    andhra: "andhra-pradesh",
+    cinema: "movies",
+  };
+
+  // Telugu category display names
   const categoryNames = {
     telangana: "తెలంగాణ",
-    andhra: "ఆంధ్రప్రదేశ్",
+    "andhra-pradesh": "ఆంధ్రప్రదేశ్",
     politics: "పాలిటిక్స్",
-    cinema: "సినిమాలు",
+    movies: "సినిమాలు",
     sports: "క్రీడలు",
     business: "బిజినెస్",
     crime: "క్రైమ్",
@@ -26,25 +32,37 @@ const CategoryPage = () => {
     const fetchCategoryPosts = async () => {
       try {
         setLoading(true);
+        setError(null);
 
-        // Set category name based on ID
-        setCategoryName(categoryNames[categoryId] || categoryId);
+        const actualSlug = slugAliases[categoryId] || categoryId;
 
-        // For demo purposes, we'll use the same API endpoint
-        // const response = await fetch(
-        //   `https://manaenadu.com/wp-json/wp/v2/posts?per_page=9`
-        // );
+        // 1. Load all categories
+        const catRes = await fetch(
+          "https://manaenadu.com/wp-json/wp/v2/categories?per_page=100"
+        );
+        const categories = await catRes.json();
 
-        const response = await fetch(
-          `https://manaenadu.com/wp-json/wp/v2/posts?_embed&orderby=date&order=desc&per_page=20`
+        // 2. Match slug
+        const matchedCat = categories.find((c) => c.slug === actualSlug);
+
+        if (!matchedCat) {
+          setError(`Category "${actualSlug}" not found`);
+          return;
+        }
+
+        setCategoryName(categoryNames[actualSlug] || matchedCat.name);
+
+        // 3. Fetch posts for this category
+        const postsRes = await fetch(
+          `https://manaenadu.com/wp-json/wp/v2/posts?_embed&categories=${matchedCat.id}&per_page=20&orderby=date&order=desc`
         );
 
-        if (!response.ok) {
+        if (!postsRes.ok) {
           throw new Error("Failed to fetch posts");
         }
 
-        const data = await response.json();
-        setPosts(data);
+        const postsData = await postsRes.json();
+        setPosts(postsData);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -76,7 +94,7 @@ const CategoryPage = () => {
   }
 
   return (
-    <div>
+    <div className="p-4">
       <div className="mb-8">
         <div className="bg-red-600 text-white py-6 px-6 rounded-lg">
           <h1 className="text-3xl md:text-4xl font-bold mb-2">
@@ -86,10 +104,14 @@ const CategoryPage = () => {
         </div>
       </div>
 
-      <div className="news-grid">
-        {posts.map((post) => (
-          <NewsCard key={post.id} post={post} />
-        ))}
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {posts.length > 0 ? (
+          posts.map((post) => <NewsCard key={post.id} post={post} />)
+        ) : (
+          <p className="col-span-full text-center text-gray-600">
+            ఈ వర్గంలో వార్తలు ఇప్పటికీ అందుబాటులో లేవు.
+          </p>
+        )}
       </div>
 
       <div className="mt-10 text-center">
