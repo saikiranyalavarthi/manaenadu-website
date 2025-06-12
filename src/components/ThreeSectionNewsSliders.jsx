@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import he from "he"; // Import HTML entity decoder
 
 // Category -> Tailwind color mapping
 const getCategoryColor = (category) => {
@@ -30,7 +31,7 @@ export default function ThreeSectionNewsSliders() {
 
         const mapped = res.data.map((post) => ({
           id: post.id,
-          title: post.title.rendered,
+          title: he.decode(post.title.rendered), // Decode HTML entities
           slug: post.slug,
           image:
             post._embedded?.["wp:featuredmedia"]?.[0]?.media_details?.sizes

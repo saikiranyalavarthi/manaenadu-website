@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { FaCalendarAlt, FaClock, FaArrowLeft } from "react-icons/fa";
+import SocialIcons from "../components/SocialIcons";
+
+// Decode HTML entities
+const decodeHTML = (html) => {
+  const txt = document.createElement("textarea");
+  txt.innerHTML = html;
+  return txt.value;
+};
 
 const PostPage = () => {
   const { id } = useParams();
@@ -82,7 +90,7 @@ const PostPage = () => {
 
       <article className="bg-white rounded-lg shadow-md p-6 mb-10">
         <h1 className="text-3xl md:text-4xl font-bold mb-4 text-gray-800">
-          {post.title.rendered}
+          {decodeHTML(post.title.rendered)}
         </h1>
 
         <div className="flex items-center text-gray-500 text-sm mb-6">
@@ -100,7 +108,7 @@ const PostPage = () => {
           <div className="mb-8">
             <img
               src={post._embedded["wp:featuredmedia"][0].source_url}
-              alt={post.title.rendered}
+              alt={decodeHTML(post.title.rendered)}
               className="w-250 h-140 object-cover rounded-t-lg"
             />
           </div>
@@ -110,6 +118,7 @@ const PostPage = () => {
           className="post-content text-gray-700"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
+        <SocialIcons />
       </article>
 
       <div className="mb-10">
@@ -130,7 +139,7 @@ const PostPage = () => {
                       src={
                         relatedPost._embedded["wp:featuredmedia"][0].source_url
                       }
-                      alt={relatedPost.title.rendered}
+                      alt={decodeHTML(relatedPost.title.rendered)}
                       className="w-full h-48 object-cover"
                     />
                   ) : (
@@ -143,7 +152,7 @@ const PostPage = () => {
               <div className="p-4">
                 <Link to={`/post/${relatedPost.id}`}>
                   <h3 className="text-lg font-bold mb-2 line-clamp-2 hover:text-red-600 transition-colors">
-                    {relatedPost.title.rendered}
+                    {decodeHTML(relatedPost.title.rendered)}
                   </h3>
                 </Link>
                 <div className="flex items-center text-gray-500 text-sm">

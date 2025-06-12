@@ -1,5 +1,6 @@
 import React from "react";
 import SocialIcons from "./SocialIcons";
+import manaLogo from "../assets/mana.png";
 
 const categories = [
   { name: "తెలంగాణ", href: "/category/telangana" },
@@ -18,7 +19,12 @@ const Footer = () => {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="md:col-span-2">
-            <div className="bg-gray-200 border-2 border-dashed rounded-xl w-48 h-12 mb-4" />
+            <img
+              src={manaLogo} // Update this path to your actual logo image location
+              alt="మన లোগో"
+              className="w-65 h-25 object-contain mb-4"
+            />
+
             <p className="text-gray-300 mb-4">
               మీకు అవసరమైన అన్ని తాజా వార్తలు, విశ్లేషణలు మరియు సమాచారం ఒకే చోట.
             </p>
@@ -85,7 +91,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-          <p>© 2025 మన. అన్ని హక్కులు ప్రత్యేకించబడినవి.</p>
+          <p>© 2025 మన ఈనాడు. అన్ని హక్కులు ప్రత్యేకించబడినవి.</p>
         </div>
       </div>
     </footer>
