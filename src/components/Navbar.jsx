@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaBars, FaTimes } from "react-icons/fa";
 import manaLogo from "../assets/mana.png";
+import NewsTickerBar from "./NewsTickerBar";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -29,7 +30,7 @@ const Navbar = () => {
           />
         </div>
       </div>
-
+      <NewsTickerBar />
       {/* Navbar */}
       <nav className="border-t border-gray-200 border-opacity-20  bg-blue-950">
         <div className="container mx-auto px-4">

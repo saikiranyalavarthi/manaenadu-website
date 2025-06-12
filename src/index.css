@@ -28,3 +28,36 @@ body {
     @apply text-2xl font-bold mt-8 mb-4 text-red-700;
   }
 } */
+@layer utilities {
+  .animate-marquee {
+    display: flex;
+    animation: marquee 25s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.fade-animation {
+  animation: fadeInOut 4s ease-in-out infinite;
+}

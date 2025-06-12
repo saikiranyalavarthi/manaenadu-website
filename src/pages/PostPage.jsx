@@ -118,7 +118,10 @@ const PostPage = () => {
           className="post-content text-gray-700"
           dangerouslySetInnerHTML={{ __html: post.content.rendered }}
         />
-        <SocialIcons />
+        <SocialIcons
+          postUrl={`https://manaenadu.com/post/${post.slug}`}
+          title={post.title.rendered}
+        />
       </article>
 
       <div className="mb-10">

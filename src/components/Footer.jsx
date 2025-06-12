@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import SocialIcons from "./SocialIcons";
 import manaLogo from "../assets/mana.png";
 
 const categories = [
   { name: "తెలంగాణ", href: "/category/telangana" },
-  { name: "ఆంధ్రప్రదేశ్", href: "/category/andhra-pradesh" },
+  { name: "ఆంధ్రప్రదేశ్", href: "/category/andhra" },
   { name: "పాలిటిక్స్", href: "/category/politics" },
-  { name: "సినిమాలు", href: "/category/movies" },
+  { name: "సినిమాలు", href: "/category/cinema" },
   { name: "క్రీడలు", href: "/category/sports" },
   { name: "బిజినెస్", href: "/category/business" },
   { name: "జాతీయం", href: "/category/national" },
@@ -14,86 +15,97 @@ const categories = [
 ];
 
 const Footer = () => {
+  const [latestPosts, setLatestPosts] = useState([]);
+
+  useEffect(() => {
+    const fetchLatestPosts = async () => {
+      try {
+        const res = await fetch(
+          "https://manaenadu.com/wp-json/wp/v2/posts?_embed&per_page=5&orderby=date&order=desc"
+        );
+        const data = await res.json();
+        setLatestPosts(data);
+      } catch (error) {
+        console.error("Failed to fetch latest news", error);
+      }
+    };
+
+    fetchLatestPosts();
+  }, []);
+
+  const getTitle = (post) => {
+    const txt = document.createElement("textarea");
+    txt.innerHTML = post.title.rendered;
+    return txt.value;
+  };
+
   return (
-    <footer className="bg-gray-800 text-white py-10">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          <div className="md:col-span-2">
-            <img
-              src={manaLogo} // Update this path to your actual logo image location
-              alt="మన లোগో"
-              className="w-65 h-25 object-contain mb-4"
-            />
-
-            <p className="text-gray-300 mb-4">
-              మీకు అవసరమైన అన్ని తాజా వార్తలు, విశ్లేషణలు మరియు సమాచారం ఒకే చోట.
-            </p>
-            <SocialIcons />
+    <footer className="bg-[#251c48] text-white py-10 px-4">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+        {/* Column 1 - Logo and text */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-red-500 text-xl">➤</span>
+            <span className="font-bold text-xl">Mana Enadu</span>
           </div>
-
-          <div>
-            <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">
-              వర్గాలు
-            </h3>
-            <ul className="space-y-2">
-              {categories.map((cat) => (
-                <li key={cat.name}>
-                  <a
-                    href={cat.href}
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    {cat.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-xl font-bold mb-4 border-b border-gray-700 pb-2">
-              లింకులు
-            </h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  గోప్యతా విధానం
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  వాడుక నియమాలు
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  సంప్రదింపు
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  మా గురించి
-                </a>
-              </li>
-            </ul>
-          </div>
+          <p className="text-sm text-gray-300">
+            Thank you for considering our website. We are excited about the
+            potential collaboration and look forward to the opportunity to
+            discuss further details.
+            <br />
+            Email Address:
+            <br />
+            <strong>contact@manaenadu.com</strong>
+          </p>
+          <img src={manaLogo} alt="" className="w-60 h-36 object-cover" />
         </div>
 
-        <div className="border-t border-gray-700 mt-8 pt-6 text-center text-gray-400">
-          <p>© 2025 మన ఈనాడు. అన్ని హక్కులు ప్రత్యేకించబడినవి.</p>
+        {/* Column 2 - Quick Links */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-red-500 text-xl">➤</span>
+            <span className="font-bold text-xl">Quick Links</span>
+          </div>
+          <ul className="space-y-2 text-sm">
+            {categories.map((cat) => (
+              <li key={cat.name}>
+                <Link
+                  to={cat.href}
+                  className="flex items-center gap-2 text-gray-300 hover:underline hover:text-red-400"
+                >
+                  <span className="text-red-500">➤</span>
+                  {cat.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Column 3 - Latest News */}
+        <div>
+          <div className="flex items-center gap-2 mb-4">
+            <span className="text-red-500 text-xl">➤</span>
+            <span className="font-bold text-xl">The latest</span>
+          </div>
+          <ul className="space-y-3 text-sm">
+            {latestPosts.map((post) => (
+              <li key={post.id}>
+                <Link
+                  to={`/post/${post.id}`}
+                  className="hover:underline hover:text-red-300"
+                >
+                  {getTitle(post).slice(0, 90)}...
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+
+      <div className="text-center text-gray-400 text-sm pt-6 border-t border-gray-700 mt-10">
+        © 2025 మన ఈనాడు. అన్ని హక్కులు ప్రత్యేకించబడినవి.
+      </div>
+      <SocialIcons postUrl="https://manaenadu.com" title="Mana Enadu" />
     </footer>
   );
 };

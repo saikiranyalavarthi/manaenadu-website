@@ -114,11 +114,7 @@ const CategoryPage = () => {
         )}
       </div>
 
-      <div className="mt-10 text-center">
-        <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-3 px-6 rounded-full transition-colors duration-300">
-          ఇంకా వార్తలు చూడండి
-        </button>
-      </div>
+      <div className="mt-10 text-center"></div>
     </div>
   );
 };
