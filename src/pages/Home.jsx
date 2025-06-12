@@ -7,6 +7,7 @@ import TrendingNewsSlider from "../components/TrendingNewsSlider";
 import EditorialGridSlider from "../components/EditorialGridSlider";
 import Newspostgrid from "../components/Newspostgrid";
 import HorizontalPostSlider from "../components/HorizontalPostSlider";
+import VisualStoriesSlider from "../components/VisualStoriesSlider";
 
 const fetchPosts = async () => {
   const res = await fetch(
@@ -79,6 +80,7 @@ const Home = () => {
       <TrendingNewsSlider />
       <EditorialGridSlider />
       <HorizontalPostSlider />
+      <VisualStoriesSlider />
       <Newspostgrid />
     </div>
   );
