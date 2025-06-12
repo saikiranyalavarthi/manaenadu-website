@@ -45,32 +45,34 @@ const NewsTickerBar = () => {
     });
 
   return (
-    <div className="bg-red-700 text-white flex items-center justify-between px-4 py-2 text-sm overflow-hidden">
-      {/* Left: Trending Label */}
-      <div className="flex items-center bg-red-900 px-2 py-1 rounded">
-        <FaFire className="mr-1 text-orange-400" />
-        <span className="font-bold">Trending News:</span>
-      </div>
+    <div className="bg-red-700 text-white px-4 py-2 text-sm overflow-hidden">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        {/* Trending Label */}
+        <div className="flex items-center bg-red-900 px-2 py-1 rounded w-fit">
+          <FaFire className="mr-1 text-orange-400" />
+          <span className="font-bold text-sm sm:text-base">Trending News:</span>
+        </div>
 
-      {/* Middle: One-by-One Ticker Title with Hover + Link */}
-      <div className="overflow-hidden mx-4 flex-1 text-center">
-        {latestPosts.length > 0 && (
-          <Link
-            to={`/post/${latestPosts[currentPostIndex].id}`}
-            className="fade-animation font-semibold hover:underline hover:text-yellow-300 transition duration-300"
-          >
-            {he.decode(latestPosts[currentPostIndex].title.rendered)}
-          </Link>
-        )}
-      </div>
+        {/* Ticker Title */}
+        <div className="flex-1 text-center overflow-hidden">
+          {latestPosts.length > 0 && (
+            <Link
+              to={`/post/${latestPosts[currentPostIndex].id}`}
+              className="fade-animation font-semibold hover:underline hover:text-yellow-300 transition duration-300 block truncate text-sm sm:text-base"
+            >
+              {he.decode(latestPosts[currentPostIndex].title.rendered)}
+            </Link>
+          )}
+        </div>
 
-      {/* Right: Date + Time */}
-      <div className="flex items-center space-x-2">
-        <FaCalendarAlt className="text-white" />
-        <span>{formatDate(currentTime)}</span>
-        <span className="bg-red-900 font-bold px-2 py-1 rounded">
-          {formatTime(currentTime)}
-        </span>
+        {/* Date + Time */}
+        <div className="flex items-center justify-end space-x-2 text-xs sm:text-sm">
+          <FaCalendarAlt className="text-white" />
+          <span className="hidden sm:inline">{formatDate(currentTime)}</span>
+          <span className="bg-red-900 font-bold px-2 py-1 rounded">
+            {formatTime(currentTime)}
+          </span>
+        </div>
       </div>
     </div>
   );
