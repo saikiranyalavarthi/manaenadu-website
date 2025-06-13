@@ -104,7 +104,7 @@ export default function ThreeSectionNewsSliders() {
                 alt={post.title}
                 className="w-full h-45 object-cover group-hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-transparent to-transparent p-2 text-white">
+              <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black via-transparent to-transparent p-2 ">
                 <span
                   className={`text-xs px-2 py-0.5 rounded font-semibold uppercase ${getCategoryColor(
                     post.category
@@ -112,7 +112,9 @@ export default function ThreeSectionNewsSliders() {
                 >
                   {post.category}
                 </span>
-                <h3 className="text-sm font-bold line-clamp-2">{post.title}</h3>
+                <h3 className="text-sm font-bold line-clamp-2 text-white">
+                  {post.title}
+                </h3>
               </div>
             </Link>
           ))}

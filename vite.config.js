@@ -10,3 +10,4 @@ export default defineConfig({
   darkMode: "class",
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 });
+// tailwind.config.js

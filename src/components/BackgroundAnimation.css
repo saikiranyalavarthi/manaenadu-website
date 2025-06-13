@@ -1,0 +1,30 @@
+.lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  margin: auto;
+  width: 100vw;
+  display: flex;
+  justify-content: space-between;
+  z-index: -1;
+}
+
+.line {
+  position: relative;
+  width: 1px;
+  height: 100%;
+  overflow: hidden;
+}
+
+.line::after {
+  content: "";
+  position: absolute;
+  height: 15vh;
+  width: 100%;
+  top: -50%;
+  left: 0;
+  animation: drop 6s infinite;
+  animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
+}

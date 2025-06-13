@@ -30,7 +30,7 @@ export default function NewsTicker() {
   }, []);
 
   return (
-    <div className="w-full bg-white overflow-hidden m-2 border border-gray-200 rounded-md">
+    <div className="w-full bg-gradient-to-r from-[#000066] to-[#990000] overflow-hidden m-2 border border-gray-200 rounded-md">
       <div className="marquee flex whitespace-nowrap items-center py-2 animate-marquee">
         {newsItems.map((item, idx) => (
           <Link
@@ -43,7 +43,7 @@ export default function NewsTicker() {
               alt="thumbnail"
               className="w-8 h-8 rounded-full object-cover mr-2 border border-gray-300"
             />
-            <span className="text-sm text-black hover:text-red-600 hover:underline transition-colors">
+            <span className="text-sm text-white hover:text-gray-300 hover:underline transition-colors">
               {item.title}
             </span>
           </Link>

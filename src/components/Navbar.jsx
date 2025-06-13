@@ -49,7 +49,7 @@ const Navbar = () => {
                 <li key={category.id}>
                   <Link
                     to={`/category/${category.id}`}
-                    className="inline-block  text-white  px-3 py-1 rounded-full text-sm font-medium hover:bg-red-600 hover:text-white transition-all duration-300 underline-offset-4 hover:underline"
+                    className="  text-white  px-3 py-1 rounded-full text-sm font-medium hover:bg-red-600  hover:text-white hover:px-4 transition-all duration-300 underline-offset-4 hover:underline"
                   >
                     {category.name}
                   </Link>

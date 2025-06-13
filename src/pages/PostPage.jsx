@@ -191,7 +191,7 @@ const PostPage = () => {
 
       {/* Sidebar - Recent Posts */}
       <aside className="bg-gray-100 rounded-lg shadow-md p-4 max-h-[600px] overflow-y-auto">
-        <h2 className="text-xl font-semibold mb-4 border-b pb-2">
+        <h2 className="text-xl font-semibold mb-4 border-b pb-2 text-black">
           తాజా వార్తలు
         </h2>
         <ul className="space-y-4">
